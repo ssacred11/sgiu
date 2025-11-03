@@ -6,10 +6,6 @@ import LoginPage from './pages/LoginPage';
 import DashboardLayout from './components/DashboardLayout';
 import OverviewPage from './pages/OverviewPage';
 import IncidentsPage from './pages/IncidentsPage';
-import CorrelationPage from './pages/CorrelationPage';
-import SimpleRegressionPage from './pages/SimpleRegressionPage';
-import MultiRegressionPage from './pages/MultiRegressionPage';
-import AssistantPage from './pages/AssistantPage';
 import ProtectedRoute from './components/ProtectedRoute';
 
 const AppRoutes: React.FC = () => {
@@ -30,14 +26,6 @@ const AppRoutes: React.FC = () => {
           {/* index === "/" */}
           <Route index element={<OverviewPage />} />
           <Route path="incidents" element={<IncidentsPage />} />
-
-          {/* Análisis */}
-          <Route path="analytics" element={<CorrelationPage />} />
-          <Route path="analysis/regression" element={<SimpleRegressionPage />} />
-          <Route path="analysis/multi-regression" element={<MultiRegressionPage />} />
-
-          {/* Asistente */}
-          <Route path="assistant" element={<AssistantPage />} />
         </Route>
       </Route>
 
