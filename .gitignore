@@ -1,0 +1,24 @@
+# Ignorar todas las carpetas node_modules
+node_modules/
+**/node_modules/
+
+# Ignorar archivos de dependencias
+package-lock.json
+
+# Ignorar archivos de secretos (¡MUY IMPORTANTE!)
+.env
+.env.local
+.env.development
+.env.production
+.env.docker
+
+# Ignorar carpetas de compilación (Netlify las crea por sí mismo)
+dist/
+build/
+
+# Ignorar carpetas de Expo
+.expo/
+
+# Ignorar archivos del sistema operativo
+.DS_Store
+Thumbs.db
