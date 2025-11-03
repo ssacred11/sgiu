@@ -34,10 +34,11 @@ const CHART_COLORS = [
   '#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b', 
   '#858796', '#5a5c69', '#f8f9fc', '#d1d3e2', '#4e73df'
 ];
-const CHART_BORDERS = CHART_COLORS.map(color => `${color}B3`); // Con opacidad
+const CHART_BORDERS = CHART_COLORS.map(color => `${color}B3`);
 
-// Función para transformar los datos de Supabase al formato de Chart.js
-const generateChartData = (data: StatRow[], labelKey: string, title: string): ChartData => {
+// --- FUNCIÓN CORREGIDA ---
+// Eliminamos el parámetro 'title' que no se usaba
+const generateChartData = (data: StatRow[], labelKey: string): ChartData => {
   const labels = data.map(row => row[labelKey]);
   const counts = data.map(row => Number(row.count));
 
@@ -71,8 +72,10 @@ const OverviewPage: React.FC = () => {
 
         const stats = data as StatsData;
         
-        setCategoryData(generateChartData(stats.by_category, 'category', 'Incidencias por Categoría'));
-        setStatusData(generateChartData(stats.by_status, 'status', 'Incidencias por Estado'));
+        // --- LLAMADAS CORREGIDAS ---
+        // Eliminamos el 3er argumento ('title')
+        setCategoryData(generateChartData(stats.by_category, 'category'));
+        setStatusData(generateChartData(stats.by_status, 'status'));
         
       } catch (err: any) {
         setError(err.message || 'Error al cargar las estadísticas');
