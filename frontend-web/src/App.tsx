@@ -8,13 +8,11 @@ import OverviewPage from './pages/OverviewPage';
 import IncidentsPage from './pages/IncidentsPage';
 import ProtectedRoute from './components/ProtectedRoute';
 
-// --- PÁGINAS RESTAURADAS ---
+// --- TODAS TUS PÁGINAS ---
 import CorrelationPage from './pages/CorrelationPage';
 import SimpleRegressionPage from './pages/SimpleRegressionPage';
 import MultiRegressionPage from './pages/MultiRegressionPage';
-// (Aquí añadiremos las otras páginas cuando me las pases)
-// import AssistantPage from './pages/AssistantPage';
-
+import AssistantPage from './pages/AssistantPage'; // <-- LA PÁGINA CLAVE
 
 const AppRoutes: React.FC = () => {
   const { isAuthenticated, isLoading } = useAuth();
@@ -22,32 +20,30 @@ const AppRoutes: React.FC = () => {
 
   return (
     <Routes>
-      {/* Publica */}
+      {/* Ruta Pública */}
       <Route
         path="/login"
         element={!isAuthenticated ? <LoginPage /> : <Navigate to="/" replace />}
       />
 
-      {/* Protegida (admin) */}
+      {/* Rutas Protegidas (Admin) */}
       <Route element={<ProtectedRoute isAdminRoute />}>
         <Route element={<DashboardLayout />}>
-          {/* index === "/" */}
-          <Route index element={<OverviewPage />} />
-          <Route path="incidents" element={<IncidentsPage />} />
           
-          {/* --- RUTAS RESTAURADAS --- */}
-          {/* (Rutas de tu DashboardLayout.tsx) */}
+          <Route index element={<OverviewPage />} /> {/* Ruta: / */}
+          <Route path="incidents" element={<IncidentsPage />} /> {/* Ruta: /incidents */}
+          
+          {/* --- TODAS TUS RUTAS DE ANÁLISIS --- */}
+          {/* (Estas rutas coinciden con tu DashboardLayout.tsx) */}
           <Route path="analysis/regression" element={<SimpleRegressionPage />} />
           <Route path="analysis/multi-regression" element={<MultiRegressionPage />} />
           <Route path="analytics" element={<CorrelationPage />} />
-          
-          {/* (Aquí añadiremos las otras rutas cuando me las pases) */}
-          {/* <Route path="assistant" element={<AssistantPage />} /> */}
+          <Route path="assistant" element={<AssistantPage />} /> {/* <-- LA RUTA CLAVE */}
 
         </Route>
       </Route>
 
-      {/* Catch-all */}
+      {/* Catch-all: Si no encuentra nada, redirige */}
       <Route
         path="*"
         element={<Navigate to={isAuthenticated ? "/" : "/login"} replace />}
