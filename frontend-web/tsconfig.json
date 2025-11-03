@@ -15,8 +15,14 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "types": ["vite/client"]
+
+    // 1. Decimos que cargue los tipos de Vite Y Node
+    "types": ["vite/client", "node"] 
   },
-  "include": ["src"],
+
+  // 2. CORRECCIÓN PRINCIPAL:
+  // Le decimos a TS que revise tanto el código 'src' COMO la carpeta 'netlify'
+  "include": ["src", "netlify"],
+
   "references": [{ "path": "./tsconfig.node.json" }]
 }

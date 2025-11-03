@@ -8,6 +8,14 @@ import OverviewPage from './pages/OverviewPage';
 import IncidentsPage from './pages/IncidentsPage';
 import ProtectedRoute from './components/ProtectedRoute';
 
+// --- PÁGINAS RESTAURADAS ---
+import CorrelationPage from './pages/CorrelationPage';
+import SimpleRegressionPage from './pages/SimpleRegressionPage';
+import MultiRegressionPage from './pages/MultiRegressionPage';
+// (Aquí añadiremos las otras páginas cuando me las pases)
+// import AssistantPage from './pages/AssistantPage';
+
+
 const AppRoutes: React.FC = () => {
   const { isAuthenticated, isLoading } = useAuth();
   if (isLoading) return <div>Cargando...</div>;
@@ -26,6 +34,16 @@ const AppRoutes: React.FC = () => {
           {/* index === "/" */}
           <Route index element={<OverviewPage />} />
           <Route path="incidents" element={<IncidentsPage />} />
+          
+          {/* --- RUTAS RESTAURADAS --- */}
+          {/* (Rutas de tu DashboardLayout.tsx) */}
+          <Route path="analysis/regression" element={<SimpleRegressionPage />} />
+          <Route path="analysis/multi-regression" element={<MultiRegressionPage />} />
+          <Route path="analytics" element={<CorrelationPage />} />
+          
+          {/* (Aquí añadiremos las otras rutas cuando me las pases) */}
+          {/* <Route path="assistant" element={<AssistantPage />} /> */}
+
         </Route>
       </Route>
 

@@ -1,0 +1,3 @@
+# frontend-web/netlify.toml
+[functions]
+  directory = "netlify/functions/"
